@@ -34,7 +34,8 @@ const Login = () => {
     }
     return (
         <>
-            {loading ? (<Spinner />) : (<div className='form-container'>
+            {loading ? (<Spinner />) : (
+            <div className='form-container'>
                 <form className="card p-2" onSubmit={handleSubmit}>
                     <img src="/assets/images/logo-black.png" alt="logo" height={400} width={400}></img>
                     <InputFrom
@@ -53,9 +54,9 @@ const Login = () => {
                         handleChange={(e) => setPassword(e.target.value)}
                         name="password"
                     />
-                    <div className="s-flex justify-space-between">
+                    <div className="d-flex justify-space-between">
                         <p>Not Registered? <Link to="/register" >Register</Link></p>
-                        <button type="submit" className="btn btn-primary">Register</button>
+                        <button type="submit" className="btn btn-primary">Login</button>
                     </div>
                 </form>
             </div>
