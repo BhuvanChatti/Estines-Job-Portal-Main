@@ -55,7 +55,7 @@ const Login = () => {
                     />
                     <div className="s-flex justify-space-between">
                         <p>Not Registered? <Link to="/register" >Register</Link></p>
-                        <button type="submit" className="btn btn-primary">Register</button>
+                        <button type="submit" className="btn btn-primary">Login</button>
                     </div>
                 </form>
             </div>
