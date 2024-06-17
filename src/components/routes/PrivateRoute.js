@@ -10,7 +10,7 @@ const PrivateRoute = ({ children }) => {
     const getUser = async (req, res, next) => {
         try {
             dispatch(showLoading())
-            const { data } = await axios.post('/api/v1/user/getUser', { token: localStorage.getItem('token') }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+            const { data } = await axios.post('https://estines-job-portal.onrender.com/api/v1/user/getUser', { token: localStorage.getItem('token') }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
             dispatch(hideLoading())
             if (data.success) {
                 dispatch(setUser(data.data))
