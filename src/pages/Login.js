@@ -19,7 +19,7 @@ const Login = () => {
         e.preventDefault();
         try {
             dispatch(showLoading())
-            const { data } = await axios.post('https://estines-job-portal.onrender.com/api/v1/auth/login', { email, password })
+            const { data } = await axios.post('/api/v1/auth/login', { email, password })
             dispatch(hideLoading())
             if (data.success) {
                 dispatch(hideLoading())
@@ -35,31 +35,31 @@ const Login = () => {
     return (
         <>
             {loading ? (<Spinner />) : (
-            <div className='form-container'>
-                <form className="card p-2" onSubmit={handleSubmit}>
-                    <img src="/assets/images/logo-black.png" alt="logo" height={400} width={400}></img>
-                    <InputFrom
-                        htmlFor="email"
-                        labelText={"Email"}
-                        type={"email"}
-                        value={email}
-                        handleChange={(e) => setEmail(e.target.value)}
-                        name="email"
-                    />
-                    <InputFrom
-                        htmlFor="password"
-                        labelText={"Password"}
-                        type={"password"}
-                        value={password}
-                        handleChange={(e) => setPassword(e.target.value)}
-                        name="password"
-                    />
-                    <div className="d-flex justify-space-between">
-                        <p>Not Registered? <Link to="/register" >Register</Link></p>
-                        <button type="submit" className="btn btn-primary">Login</button>
-                    </div>
-                </form>
-            </div>
+                <div className='form-container'>
+                    <form className="card p-2" onSubmit={handleSubmit}>
+                        <img src="/assets/images/logo-black.png" alt="logo" height={400} width={400}></img>
+                        <InputFrom
+                            htmlFor="email"
+                            labelText={"Email"}
+                            type={"email"}
+                            value={email}
+                            handleChange={(e) => setEmail(e.target.value)}
+                            name="email"
+                        />
+                        <InputFrom
+                            htmlFor="password"
+                            labelText={"Password"}
+                            type={"password"}
+                            value={password}
+                            handleChange={(e) => setPassword(e.target.value)}
+                            name="password"
+                        />
+                        <div className="d-flex justify-space-between">
+                            <p>Not Registered? <Link to="/register" >Register</Link></p>
+                            <button type="submit" className="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
             )}
         </>
     )
