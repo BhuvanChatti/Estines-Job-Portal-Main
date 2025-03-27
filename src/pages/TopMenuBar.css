@@ -29,7 +29,7 @@
 }
 
 .menu-item {
-    color: white;
+    color: rgba(92, 108, 170, 0.486);;
     padding: 10px 15px;
     text-align: center;
     text-decoration: none;
@@ -38,7 +38,7 @@
 
 .menu-item:hover {
     background-color: rgba(176, 50, 50, 0.5);
-    color: white;
+    color: rgba(92, 108, 170, 0.736);
 }
 
 @media (orientation: landscape) and (max-height: 600px) {
