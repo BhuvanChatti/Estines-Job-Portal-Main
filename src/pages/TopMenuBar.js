@@ -6,6 +6,7 @@ import '../../src/styles/Home.css';
 const TopMenuBar = () => {
     return (
         <div className="top-menu-bar text-center">
+            <div className="Ham">☰</div>
             <div className="menu-items">
                 <Link to="/" className="menu-item">Home</Link>
                 <Link to="/jobs" className="menu-item">Jobs</Link>
