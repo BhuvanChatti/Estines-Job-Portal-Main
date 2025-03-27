@@ -26,6 +26,7 @@
 .menu-items {
     display: flex;
     gap: 250px;
+    margin-left: 20px;
 }
 
 .menu-item {
