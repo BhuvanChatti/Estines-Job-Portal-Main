@@ -50,6 +50,7 @@
 
     .menu-items {
         flex-direction: row;
+        margin-left: 0;
     }
 
     .menu-item {
@@ -69,6 +70,7 @@
         background-color: rgba(92, 108, 170, 0.9);
         padding: 10px 0;
         gap:0;
+        margin-left: 0;
     }
 
     .menu-items.active {
