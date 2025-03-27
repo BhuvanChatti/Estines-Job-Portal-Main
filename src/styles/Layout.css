@@ -42,3 +42,18 @@
 .active.i {
     color: rgb(26, 2, 62);
 }
+.layout-header nav {
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .layout-header nav {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .layout-header nav a {
+        width: 100%;
+        text-align: center;
+    }
+}
