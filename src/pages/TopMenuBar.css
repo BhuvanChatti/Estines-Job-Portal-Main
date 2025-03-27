@@ -19,7 +19,45 @@
     padding: 10px;
 }
 
+.top-menu-bar:hover {
+    background-color: rgba(92, 108, 170, 0.736);
+}
+
+.menu-items {
+    display: flex;
+    gap: 250px;
+}
+
+.menu-item {
+    color: white;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.menu-item:hover {
+    background-color: rgba(176, 50, 50, 0.5);
+    color: white;
+}
+
 @media (orientation: landscape) and (max-height: 600px) {
+    .top-menu-bar {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .menu-items {
+        flex-direction: row;
+    }
+
+    .menu-item {
+        padding: 10px 15px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 719px) {
     .menu-items {
         display: none;
         flex-direction: column;
@@ -42,7 +80,7 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .hamburger {
+    .Ham {
         display: block;
     }
 
@@ -59,26 +97,4 @@
         padding: 6px 12px;
         font-size: 14px;
     }
-}
-
-.top-menu-bar:hover {
-    background-color: rgba(92, 108, 170, 0.736);
-}
-
-.menu-items {
-    display: flex;
-    gap: 250px;
-}
-
-.menu-item {
-    color: white;
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 20px;
-}
-
-.menu-item:hover {
-    background-color: rgba(176, 50, 50, 0.5);
-    color: white;
 }
