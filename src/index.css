@@ -11,9 +11,10 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
+  overflow:auto;
 }
 body {
-    overflow-x: hidden;
+    overflow-x: auto;
 }
 
 @media (max-width: 768px) {
