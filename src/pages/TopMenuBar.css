@@ -13,42 +13,34 @@
 }
 
 @media (orientation: landscape) and (max-height: 600px) {
-    .top-menu-bar {
-        flex-direction: row;
-        align-items: center;
+    .menu-items {
+        display: none; /* Hide menu items by default on mobile */
+        flex-direction: column;
+        position: absolute;
+        top: 50px; /* Position below the menu bar */
+        left: 0;
+        width: 100%;
+        background-color: rgba(92, 108, 170, 0.9);
+        padding: 10px 0;
     }
 
-    .menu-items {
-        flex-direction: row;
+    .menu-items.active {
+        display: flex; /* Show when toggled */
     }
 
     .menu-item {
-        padding: 10px 15px;
-        font-size: 16px;
+        padding: 15px;
+        font-size: 16px; /* Smaller font size for mobile */
+        text-align: left;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Add a separator between items */
     }
 
-    .content {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
+    .hamburger {
+        display: block; /* Show hamburger icon on mobile */
     }
 
-    .content div {
-        max-width: 60%;
-    }
-
-    .content h1 {
-        font-size: 2em;
-    }
-
-    .content p {
-        font-size: 1em;
-    }
-
-    .backgroundStyle {
-        background-size: cover;
-        background-position: center;
+    .top-menu-bar {
+        padding: 5px 10px; /* Reduce padding for smaller screens */
     }
 }
 
