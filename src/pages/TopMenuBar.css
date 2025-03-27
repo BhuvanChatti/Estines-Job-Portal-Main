@@ -66,8 +66,8 @@
         left: 0;
         width: 100%;
         background-color: rgba(92, 108, 170, 0.9);
-        padding: 0 0;
-        gap: 0;
+        padding: 10px 0;
+        gap:0;
     }
 
     .menu-items.active {
@@ -78,9 +78,7 @@
         padding: 15px;
         font-size: 16px;
         text-align: left;
-        background-color: rgba(92, 108, 170, 0.9);
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        color: white;
         gap: 0;
         left: 0;
         text-align: center;
@@ -104,3 +102,15 @@
         font-size: 14px;
     }
 }
+
+.backgroundStyle {
+    height: 100vh;
+    background-color: lightgray;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .backgroundStyle p {
+    font-size: 1.2em;
+    color: #333;
+  }
