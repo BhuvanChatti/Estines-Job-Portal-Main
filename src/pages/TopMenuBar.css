@@ -1,4 +1,3 @@
-/* TopMenuBar.css */
 .top-menu-bar {
     background-color: rgba(92, 108, 170, 0.486);
     display: flex;
@@ -12,12 +11,20 @@
     transition: background-color 0.3s;
 }
 
+.Ham {
+    display: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+}
+
 @media (orientation: landscape) and (max-height: 600px) {
     .menu-items {
-        display: none; /* Hide menu items by default on mobile */
+        display: none;
         flex-direction: column;
         position: absolute;
-        top: 50px; /* Position below the menu bar */
+        top: 50px;
         left: 0;
         width: 100%;
         background-color: rgba(92, 108, 170, 0.9);
@@ -25,22 +32,32 @@
     }
 
     .menu-items.active {
-        display: flex; /* Show when toggled */
+        display: flex;
     }
 
     .menu-item {
         padding: 15px;
-        font-size: 16px; /* Smaller font size for mobile */
+        font-size: 16px;
         text-align: left;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Add a separator between items */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .hamburger {
-        display: block; /* Show hamburger icon on mobile */
+        display: block;
     }
 
     .top-menu-bar {
-        padding: 5px 10px; /* Reduce padding for smaller screens */
+        padding: 5px 10px;
+        flex-wrap: wrap;
+    }
+
+    .auth-buttons {
+        gap: 5px;
+    }
+
+    .button {
+        padding: 6px 12px;
+        font-size: 14px;
     }
 }
 
