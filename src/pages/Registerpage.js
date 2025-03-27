@@ -33,8 +33,12 @@ const Register = () => {
             }
         } catch (error) {
             dispatch(hideLoading())
+            if (error.response && error.response.data && error.response.data.message) {
+                toast.error(error.response.data.message);
+            }
+            else{
             toast.error('Invalid Form Details Please Try Again');
-
+            }
         }
     }
 
