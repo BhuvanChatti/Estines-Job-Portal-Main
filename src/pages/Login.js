@@ -29,7 +29,12 @@ const Login = () => {
             }
         } catch (error) {
             dispatch(hideLoading())
-            toast.error("Invalid Credentials Details Please Try Again");
+            if (error.response && error.response.data && error.response.data.message) {
+                toast.error(error.response.data.message);
+            }
+            else {
+                toast.error("Invalid Credentials Details Please Try Again");
+            }
         }
     }
     return (
