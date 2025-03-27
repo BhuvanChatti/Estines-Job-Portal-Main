@@ -7,6 +7,7 @@ import { hideLoading, showLoading } from './../redux/features/alertSlice';
 import Spinner from '../components/shared/Spinner';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import './R-L.css';
 
 const Register = () => {
     const [name, setName] = useState("");
