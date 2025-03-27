@@ -12,4 +12,12 @@
   justify-content: center;
   height: 100vh;
 }
+body {
+    overflow-x: hidden;
+}
 
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+}
