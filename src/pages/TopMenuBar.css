@@ -12,35 +12,49 @@
     transition: background-color 0.3s;
 }
 
-@media (max-width: 768px)
-{
-    .top-menu-bar {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    
-      .menu-items {
-        flex-direction: column;
-        width: 100%;
-      }
-    
-      .menu-item {
-        display: block;
-        text-align: left;
-        padding: 8px;
-        font-size: 14px;
-      }
-    
-      .auth-buttons {
-        flex-direction: column;
-        width: 100%;
-      }
-    
-      .auth-buttons .button {
-        margin: 5px 0;
-        width: 100%;
-      }
+@media (max-width: 480px) {
+    .menu-items {
+      flex-direction: column; /* Stack vertically for very narrow screens */
+    }
+  
+    .menu-item {
+      display: block;
+      text-align: center; /* Center align for vertical stacking */
+      padding: 8px;
+      font-size: 14px;
+    }
 }
+  
+/* Home.css (or your main content CSS) */
+  @media (max-width: 768px) {
+    .content {
+      padding: 20px; /* Increase padding */
+    }
+  
+    .content h1 {
+      font-size: 1.4em; /* Further reduce font size */
+      margin-bottom: 10px; /* Add margin */
+    }
+  
+    .content p {
+      font-size: 0.9em; /* Further reduce font size */
+      margin-top: 10px; /* Add margin */
+    }
+  
+    .backgroundStyle {
+      background-size: cover;
+      background-position: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+      .content h1 {
+          font-size: 1.2em;
+      }
+      .content p{
+          font-size: 0.8em;
+      }
+  }
 
 .top-menu-bar:hover {
     background-color: rgba(92, 108, 170, 0.736);
