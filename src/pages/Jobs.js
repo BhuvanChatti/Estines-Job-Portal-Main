@@ -1,35 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Search = () => {
+const My_Jobs = () => {
     const [search, setSearch] = useState('');
     const [jobs, setJobs] = useState([]);
+    const [allJobs, setAllJobs] = useState([]); // Store all jobs
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [page, setPage] = useState(1);
     const [totalJobs, setTotalJobs] = useState(0);
     const [numOfPage, setNumOfPage] = useState(0);
 
+    // Fetch jobs when the component mounts
     useEffect(() => {
-        // Fetch jobs when the component mounts or search changes
         const fetchJobs = async () => {
             setLoading(true);
             try {
                 const response = await axios.get('https://estines-job-portal.onrender.com/api/v1/job/get-jobs', {
                     params: {
-                        search,
                         sort: 'latest',
                         page,
                         limit: 10,
-                        status: 'all', // You can change this to filter jobs based on status
-                        workType: 'all', // You can change this as well to filter jobs based on work type
+                        status: 'all',
+                        workType: 'all',
                     },
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}` // Assuming you store your JWT in localStorage
                     }
                 });
 
-                setJobs(response.data.jobs);
+                setAllJobs(response.data.jobs);  // Save all jobs for future filtering
+                setJobs(response.data.jobs); // Initially set the jobs to all fetched jobs
                 setTotalJobs(response.data.totalJobs);
                 setNumOfPage(response.data.numOfPage);
             } catch (err) {
@@ -39,15 +40,29 @@ const Search = () => {
             }
         };
 
-        if (search) {
-            fetchJobs();
-        }
-    }, [search, page]);
+        fetchJobs();
+    }, [page]);
 
+    // Handle search input change
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
     };
 
+    // Filter jobs based on the search term
+    useEffect(() => {
+        if (search.trim() === '') {
+            setJobs(allJobs); // Show all jobs if no search term
+        } else {
+            const filteredJobs = allJobs.filter(
+                (job) =>
+                    job.position.toLowerCase().includes(search.toLowerCase()) ||
+                    job.company.toLowerCase().includes(search.toLowerCase())
+            );
+            setJobs(filteredJobs);
+        }
+    }, [search, allJobs]);
+
+    // Handle pagination
     const handlePageChange = (newPage) => {
         setPage(newPage);
     };
@@ -57,13 +72,15 @@ const Search = () => {
             <h1>Job Search</h1>
 
             {/* Search input */}
-            <input
-                type="text"
-                placeholder="Search by position or company"
-                value={search}
-                onChange={handleSearchChange}
-                className="search-input"
-            />
+            <div className="search-container">
+                <input
+                    type="text"
+                    placeholder="Search by position or company"
+                    value={search}
+                    onChange={handleSearchChange}
+                    className="search-input"
+                />
+            </div>
 
             {/* Error message */}
             {error && <p className="error-message">{error}</p>}
@@ -107,4 +124,4 @@ const Search = () => {
     );
 };
 
-export default Search;
+export default My_Jobs;

@@ -10,6 +10,11 @@ export const userMenu = [
         icon: "fa-solid fa-house-user"
     },
     {
+        name: 'My jobs',
+        path: '/my-jobs',
+        icon: "fa-solid fa-briefcase"
+    },
+    {
         name: 'Latest jobs',
         path: '/search',
         icon: "fa-solid fa-briefcase"
