@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './components/routes/PrivateRoute.js';
 import PublicRoute from './components/routes/PublicRoute.js';
+import Search from './pages/Search.js';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<PublicRoute><Login /></PublicRoute>} />
         <Route path='/register' element={<PublicRoute><Register /></PublicRoute>} />
-        <Route path='/dashboard' element= {<PrivateRoute><DashBoard /></PrivateRoute> } />
+        <Route path='/search' element={<PublicRoute><Search /></PublicRoute>} />
+        <Route path='/dashboard' element={<PrivateRoute><DashBoard /></PrivateRoute>} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </>
