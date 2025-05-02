@@ -6,7 +6,11 @@ import '../../src/styles/Home.css';
 
 const TopMenuBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const { user } = useSelector(state => state.auth);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        setIsLoggedIn(!!localStorage.getItem('token'));
+    }, []);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -25,7 +29,7 @@ const TopMenuBar = () => {
                 <Link to="/dashboard" className="menu-item" onClick={closeMenu}>Dashboard</Link>
                 <Link to="/search" className="menu-item" onClick={closeMenu}>Search</Link>
             </div>
-            {!user && (
+            {!isLoggedIn && (
                 <div className="auth-buttons">
                     <Link to="/login">
                         <button className="button">Login</button>
