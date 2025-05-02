@@ -20,7 +20,7 @@ function App() {
         <Route path='/register' element={<PublicRoute><Register /></PublicRoute>} />
         <Route path='/search' element={<PublicRoute><Search /></PublicRoute>} />
         <Route path='/dashboard' element={<PrivateRoute><DashBoard /></PrivateRoute>} />
-        <Route path='*' element={<NotFound />} />
+        <Route path='*' element={<PrivateRoute><NotFound /></PrivateRoute>} />
       </Routes>
     </>
   );
