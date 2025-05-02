@@ -107,17 +107,14 @@ const My_Jobs = () => {
                     onClick={() => handlePageChange(page - 1)}
                     disabled={page === 1}
                     className="btn btn-outline-primary rounded-pill me-2"
-                >
-                    Previous
-                </button>
+                >Previous</button>
+
                 <span>Page {page} of {numOfPage}</span>
                 <button
                     onClick={() => handlePageChange(page + 1)}
                     disabled={page === numOfPage}
                     className="btn btn-outline-primary rounded-pill ms-2"
-                >
-                    Next
-                </button>
+                >Next</button>
             </div>
         </div>
     );
