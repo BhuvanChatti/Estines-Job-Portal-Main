@@ -5,6 +5,7 @@ import '../../src/styles/Home.css';
 
 const TopMenuBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { user } = useSelector(state => state.auth);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
