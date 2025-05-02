@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import './TopMenuBar.css';
 import '../../src/styles/Home.css';
 
 const TopMenuBar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+    
     useEffect(() => {
         setIsLoggedIn(!!localStorage.getItem('token'));
     }, []);
