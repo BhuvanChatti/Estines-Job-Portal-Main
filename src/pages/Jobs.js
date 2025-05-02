@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
 const My_Jobs = () => {
     const [search, setSearch] = useState('');
@@ -11,7 +12,6 @@ const My_Jobs = () => {
     const [totalJobs, setTotalJobs] = useState(0);
     const [numOfPage, setNumOfPage] = useState(0);
 
-    // Fetch jobs when the component mounts
     useEffect(() => {
         const fetchJobs = async () => {
             setLoading(true);
@@ -25,12 +25,12 @@ const My_Jobs = () => {
                         workType: 'all',
                     },
                     headers: {
-                        Authorization: `Bearer ${localStorage.getItem('token')}` // Assuming you store your JWT in localStorage
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
                 });
 
-                setAllJobs(response.data.jobs);  // Save all jobs for future filtering
-                setJobs(response.data.jobs); // Initially set the jobs to all fetched jobs
+                setAllJobs(response.data.jobs);
+                setJobs(response.data.jobs);
                 setTotalJobs(response.data.totalJobs);
                 setNumOfPage(response.data.numOfPage);
             } catch (err) {
@@ -43,15 +43,13 @@ const My_Jobs = () => {
         fetchJobs();
     }, [page]);
 
-    // Handle search input change
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
     };
 
-    // Filter jobs based on the search term
     useEffect(() => {
         if (search.trim() === '') {
-            setJobs(allJobs); // Show all jobs if no search term
+            setJobs(allJobs);
         } else {
             const filteredJobs = allJobs.filter(
                 (job) =>
@@ -62,53 +60,53 @@ const My_Jobs = () => {
         }
     }, [search, allJobs]);
 
-    // Handle pagination
     const handlePageChange = (newPage) => {
         setPage(newPage);
     };
 
     return (
-        <div className="search-page">
-            <h1>Job Search</h1>
+        <div className="d-flex flex-column align-items-center p-4">
+            <h1 className="mb-3">Job Search</h1>
 
             {/* Search input */}
-            <div className="search-container">
+            <div className="mb-3 w-75">
                 <input
                     type="text"
                     placeholder="Search by position or company"
                     value={search}
                     onChange={handleSearchChange}
-                    className="search-input"
+                    className="form-control rounded-pill"
                 />
             </div>
 
             {/* Error message */}
-            {error && <p className="error-message">{error}</p>}
+            {error && <p className="alert alert-danger w-75 text-center">{error}</p>}
 
             {/* Loading indicator */}
             {loading && <p>Loading...</p>}
 
             {/* Jobs list */}
-            <div className="jobs-list">
+            <div className="w-75">
                 {jobs.length > 0 ? (
                     jobs.map((job) => (
-                        <div key={job._id} className="job-item">
+                        <div key={job._id} className="card shadow-sm rounded-pill mb-3 p-3">
                             <h3>{job.position}</h3>
-                            <p>Company: {job.company}</p>
-                            <p>Status: {job.status}</p>
-                            <p>Work Type: {job.workType}</p>
+                            <p className="mb-1">Company: {job.company}</p>
+                            <p className="mb-1">Status: {job.status}</p>
+                            <p className="mb-0">Work Type: {job.workType}</p>
                         </div>
                     ))
                 ) : (
-                    <p>No jobs found</p>
+                    <p className="alert alert-info w-75 text-center">No jobs found</p>
                 )}
             </div>
 
             {/* Pagination */}
-            <div className="pagination">
+            <div className="mt-4">
                 <button
                     onClick={() => handlePageChange(page - 1)}
                     disabled={page === 1}
+                    className="btn btn-outline-primary rounded-pill me-2"
                 >
                     Previous
                 </button>
@@ -116,6 +114,7 @@ const My_Jobs = () => {
                 <button
                     onClick={() => handlePageChange(page + 1)}
                     disabled={page === numOfPage}
+                    className="btn btn-outline-primary rounded-pill ms-2"
                 >
                     Next
                 </button>
