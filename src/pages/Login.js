@@ -35,7 +35,7 @@ const Login = () => {
                 toast.error(error.response.data.message);
             }
             else {
-                toast.error("Invalid Credentials Details Please Try Again");
+                toast.error("Invalid Credential Details. Please Try Again");
             }
         }
     }
