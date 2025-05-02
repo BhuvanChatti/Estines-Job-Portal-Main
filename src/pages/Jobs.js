@@ -89,7 +89,7 @@ const My_Jobs = () => {
             <div className="w-75">
                 {jobs.length > 0 ? (
                     jobs.map((job) => (
-                        <div key={job._id} className="card shadow-sm rounded-pill mb-3 p-3">
+                        <div key={job._id} className="card shadow-sm rounded-sm mb-3 p-3">
                             <h3>{job.position}</h3>
                             <p className="mb-1">Company: {job.company}</p>
                             <p className="mb-1">Status: {job.status}</p>
