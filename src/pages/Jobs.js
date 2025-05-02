@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const My_Jobs = () => {
     const [search, setSearch] = useState('');
     const [jobs, setJobs] = useState([]);
-    const [allJobs, setAllJobs] = useState([]); // Store all jobs
+    const [allJobs, setAllJobs] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [page, setPage] = useState(1);
