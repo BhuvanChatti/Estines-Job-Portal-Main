@@ -20,6 +20,7 @@ function App() {
         <Route path='/register' element={<PublicRoute><Register /></PublicRoute>} />
         <Route path='/my-jobs' element={<PrivateRoute><My_Jobs /></PrivateRoute>} />
         <Route path='/dashboard' element={<PrivateRoute><DashBoard /></PrivateRoute>} />
+        
         <Route path='*' element={<PrivateRoute><NotFound /></PrivateRoute>} />
       </Routes>
     </>
