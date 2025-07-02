@@ -104,7 +104,7 @@ const My_Jobs = () => {
             {loading && <p className="text-gray-600 mb-4">Loading...</p>}
 
             {/* Jobs list */}
-            <div className="w-full max-w-2xl max-h-[480px] overflow-y-auto">
+            <div className="w-full max-w-2xl max-h-[450px] overflow-y-auto">
                 {jobs.length > 0 ? (
                     jobs.map((job) => (
 
