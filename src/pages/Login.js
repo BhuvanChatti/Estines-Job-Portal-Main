@@ -8,11 +8,13 @@ import Spinner from './../components/shared/Spinner';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './R-L.css';
+import { useContext } from 'react';
+import { userContext } from '../components/shared/Context.js';
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { loading } = useSelector(state => state.alerts)
+    const { loading } = useSelector(state => state.alerts);
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -20,7 +22,7 @@ const Login = () => {
         e.preventDefault();
         try {
             dispatch(showLoading())
-            const { data } = await axios.post('https://estines-job-portal.onrender.com/api/v1/auth/login', { email, password })
+            const { data } = await axios.post('http://localhost:8000/api/v1/auth/login', { email, password })
             dispatch(hideLoading())
             if (data.success) {
                 dispatch(hideLoading())
@@ -61,8 +63,8 @@ const Login = () => {
                             handleChange={(e) => setPassword(e.target.value)}
                             name="password"
                         />
-                        <div className="d-flex justify-space-between">
-                            <p>Not Registered? <Link to="/register" >Register</Link></p>
+                        <div className="d-flex flex-col justify-space-between items-center">
+                            <p>Not Registered? <Link to="/register" >Register Here</Link></p>
                             <button type="submit" className="btn btn-primary">Login</button>
                         </div>
                     </form>

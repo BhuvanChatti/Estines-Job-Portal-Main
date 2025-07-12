@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "proxy": "https://estines-job-portal.onrender.com",
+  "proxy": "http://localhost:8000",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",

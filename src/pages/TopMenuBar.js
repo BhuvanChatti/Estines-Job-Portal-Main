@@ -26,7 +26,7 @@ const TopMenuBar = () => {
                 <Link to="/" className="menu-item" onClick={closeMenu}>Home</Link>
                 <Link to="/jobs" className="menu-item" onClick={closeMenu}>Jobs</Link>
                 <Link to="/dashboard" className="menu-item" onClick={closeMenu}>Dashboard</Link>
-                <Link to="/search" className="menu-item" onClick={closeMenu}>Search</Link>
+                <Link to="/all-jobs" className="menu-item" onClick={closeMenu}>Search</Link>
             </div>
             {!isLoggedIn && (
                 <div className="auth-buttons">

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Jobs = () => {
+const Applied = () => {
+    const Options = ['Pending', 'Reject', 'Interview', 'Selected'];
     const [search, setSearch] = useState('');
     const [sortM, setSM] = useState(false);
     const [sort, setsort] = useState('latest');
@@ -17,7 +18,7 @@ const Jobs = () => {
         const fetchJobs = async () => {
             setLoading(true);
             try {
-                const response = await axios.get('http://localhost:8000/api/v1/job/get-jobs', {
+                const response = await axios.get('http://localhost:8000/api/v1/job/get-Wmy-jobs', {
                     params: {
                         sort: sort,
                         page,
@@ -30,6 +31,7 @@ const Jobs = () => {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
                 });
+                console.log(response);
 
                 setAllJobs(response.data.jobs);
                 setJobs(response.data.jobs);
@@ -45,29 +47,50 @@ const Jobs = () => {
         fetchJobs();
     }, [search, page, sort]);
 
-    const status = (s) => {
-        if (s === "Pending") {
-            return (<div className="bg-yellow-600 text-black px-3 py-1 text-sm rounded-full">Pending</div>);
-        }
-        if (s === "Interview") {
-            return (<div className="bg-green-600 text-white px-3 py-1 text-sm rounded-full">Interview</div>);
-        }
-        if (s === "Reject") {
-            return (<div className="bg-red-600 text-white px-3 py-1 text-sm rounded-full">Rejected</div>);
-        }
-    }
+    const StatusDropdown = ({ currentStatus, jobId }) => {
+        const [open, setOpen] = useState(false);
+        const [selectedStatus, setSelectedStatus] = useState(currentStatus);
+
+        const handlestatus = async (s) => {
+            //     return (<div className="bg-yellow-600 text-black px-3 py-1 text-sm rounded-full flex">{s} 🔽</div>);
+            // } {
+            setSelectedStatus(s);
+            setOpen(false);
+            try {
+                console.log(jobId);
+                await axios.put(`http://localhost:8000/api/v1/job/changeapply/${jobId}`, {
+                    status: s,
+                }, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+            } catch (error) {
+                console.error('Error updating status', error);
+            }
+        };
+
+        return (
+            <div className="relative inline-block text-left">
+                <button onClick={() => setOpen(prev => !prev)}
+                    className={`${selectedStatus === "Pending" ? "bg-yellow-600" : selectedStatus === "Interview" ? "bg-green-400" : selectedStatus === "Selected" ? "bg-green-600" : selectedStatus === "Reject" ? "bg-red-600" : "bg-gray-600"} text-black px-3 py-1 text-sm rounded-full flex items-center`}>
+                    {selectedStatus} 🔽
+                </button>
+                {open && (
+                    <div className="absolute z-10 right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                        {Options.map((status) => (
+                            <button key={status} onClick={() => handlestatus(status)} className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left">
+                                {status}
+                            </button>
+                        ))}
+                    </div>
+                )}
+            </div>
+        );
+    };
 
     const handlesort = (s) => {
         setsort(s);
-    }
-
-    const handleApply = async (JobID) => {
-
-        const data = await axios.post('http://localhost:8000/api/v1/job/apply', { job: JobID }, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-            }
-        });
     }
 
     const handlePageChange = (newPage) => {
@@ -76,7 +99,7 @@ const Jobs = () => {
 
     return (
         <div className="min-h-screen bg-white flex flex-col items-center px-4 py-8">
-            <h1 className="text-3xl font-bold mb-6 text-blue-800">Job Search</h1>
+            <h1 className="text-3xl font-bold mb-6 text-blue-800">Job Applicants</h1>
 
             <div className="w-full max-w-2xl mb-6 flex items-center gap-4">
                 <input
@@ -115,13 +138,14 @@ const Jobs = () => {
 
                         <div key={job._id} className="bg-blue-100 border border-blue-300 text-blue-900 rounded-xl shadow-md p-4 mb-4 hover:bg-blue-200 transition-colors">
                             <div className='flex justify-between'>
-                                <h3 className="text-xl font-semibold mb-1">{job.position}</h3>
+                                <h3 className="text-xl font-semibold mb-1">{job.JobId.position}</h3>
                                 <div>
-                                    <button className='btn btn-success' onClick={() => handleApply(job._id)}>Apply</button>
+                                    <StatusDropdown currentStatus={job.status} jobId={job._id} />
                                 </div>
                             </div>
-                            <p className="text-sm">Company: {job.company}</p>
-                            <p className="text-sm">Work Type: {job.workType}</p>
+                            <p className="text-base">Applied By: {job.ApplicantID.name} {job.ApplicantID.lastName}</p>
+                            <p className="text-base">Email: {job.ApplicantID.email}</p>
+                            <p className="text-base">Date: {job.createdAt}</p>
                         </div>
                     ))
                 ) :
@@ -151,4 +175,4 @@ const Jobs = () => {
     );
 };
 
-export default Jobs;
+export default Applied;
