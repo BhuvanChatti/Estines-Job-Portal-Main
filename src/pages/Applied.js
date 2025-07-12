@@ -18,7 +18,7 @@ const Applied = () => {
         const fetchJobs = async () => {
             setLoading(true);
             try {
-                const response = await axios.get('http://localhost:8000/api/v1/job/get-Wmy-jobs', {
+                const response = await axios.get('https://estines-job-portal.onrender.com/api/v1/job/get-Wmy-jobs', {
                     params: {
                         sort: sort,
                         page,
@@ -58,7 +58,7 @@ const Applied = () => {
             setOpen(false);
             try {
                 console.log(jobId);
-                await axios.put(`http://localhost:8000/api/v1/job/changeapply/${jobId}`, {
+                await axios.put(`https://estines-job-portal.onrender.com/api/v1/job/changeapply/${jobId}`, {
                     status: s,
                 }, {
                     headers: {
@@ -130,27 +130,27 @@ const Applied = () => {
                 </p>
             )}
 
-            {loading ? (<p className="text-gray-600 mb-4">Loading...</p>):
+            {loading ? (<p className="text-gray-600 mb-4">Loading...</p>) :
 
-            (<div className="w-full max-w-2xl max-h-[450px] overflow-y-auto">
-                {jobs.length > 0 ? (
-                    jobs.map((job) => (
+                (<div className="w-full max-w-2xl max-h-[450px] overflow-y-auto">
+                    {jobs.length > 0 ? (
+                        jobs.map((job) => (
 
-                        <div key={job._id} className="bg-blue-100 border border-blue-300 text-blue-900 rounded-xl shadow-md p-4 mb-4 hover:bg-blue-200 transition-colors">
-                            <div className='flex justify-between'>
-                                <h3 className="text-xl font-semibold mb-1">{job.JobId.position}</h3>
-                                <div>
-                                    <StatusDropdown currentStatus={job.status} jobId={job._id} />
+                            <div key={job._id} className="bg-blue-100 border border-blue-300 text-blue-900 rounded-xl shadow-md p-4 mb-4 hover:bg-blue-200 transition-colors">
+                                <div className='flex justify-between'>
+                                    <h3 className="text-xl font-semibold mb-1">{job.JobId.position}</h3>
+                                    <div>
+                                        <StatusDropdown currentStatus={job.status} jobId={job._id} />
+                                    </div>
                                 </div>
+                                <p className="text-base">Applied By: {job.ApplicantID.name} {job.ApplicantID.lastName}</p>
+                                <p className="text-base">Email: {job.ApplicantID.email}</p>
+                                <p className="text-base">Date: {job.createdAt}</p>
                             </div>
-                            <p className="text-base">Applied By: {job.ApplicantID.name} {job.ApplicantID.lastName}</p>
-                            <p className="text-base">Email: {job.ApplicantID.email}</p>
-                            <p className="text-base">Date: {job.createdAt}</p>
-                        </div>
-                    ))
-                ) :
-                    (<p className="bg-blue-50 text-blue-700 px-4 py-2 rounded w-full max-w-2xl text-center">No jobs found</p>)}
-            </div>)}
+                        ))
+                    ) :
+                        (<p className="bg-blue-50 text-blue-700 px-4 py-2 rounded w-full max-w-2xl text-center">No jobs found</p>)}
+                </div>)}
 
             <div className="mt-6 flex items-center gap-4">
                 <button
