@@ -17,7 +17,7 @@ const Jobs = () => {
         const fetchJobs = async () => {
             setLoading(true);
             try {
-                const response = await axios.get('http://localhost:8000/api/v1/job/get-jobs', {
+                const response = await axios.get('https://estines-job-portal.onrender.com/api/v1/job/get-jobs', {
                     params: {
                         sort: sort,
                         page,
@@ -63,7 +63,7 @@ const Jobs = () => {
 
     const handleApply = async (JobID) => {
 
-        const data = await axios.post('http://localhost:8000/api/v1/job/apply', { job: JobID }, {
+        const data = await axios.post('https://estines-job-portal.onrender.com/api/v1/job/apply', { job: JobID }, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
