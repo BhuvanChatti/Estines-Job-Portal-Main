@@ -18,7 +18,7 @@ const Applied = () => {
         const fetchJobs = async () => {
             setLoading(true);
             try {
-                const response = await axios.get('http://localhost:8000/api/v1/job/get-Wmy-jobs', {
+                const response = await axios.get('https://estines-job-portal.onrender.com/api/v1/job/get-Wmy-jobs', {
                     params: {
                         sort: sort,
                         page,
@@ -58,7 +58,7 @@ const Applied = () => {
             setOpen(false);
             try {
                 console.log(jobId);
-                await axios.put(`http://localhost:8000/api/v1/job/changeapply/${jobId}`, {
+                await axios.put(`https://estines-job-portal.onrender.com/api/v1/job/changeapply/${jobId}`, {
                     status: s,
                 }, {
                     headers: {
