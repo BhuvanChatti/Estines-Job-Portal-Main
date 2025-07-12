@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const Jobs = () => {
+const My_Jobs = () => {
     const [search, setSearch] = useState('');
     const [sortM, setSM] = useState(false);
     const [sort, setsort] = useState('latest');
@@ -17,7 +17,7 @@ const Jobs = () => {
         const fetchJobs = async () => {
             setLoading(true);
             try {
-                const response = await axios.get('http://localhost:8000/api/v1/job/get-jobs', {
+                const response = await axios.get('http://localhost:8000/api/v1/job/get-my-jobs', {
                     params: {
                         sort: sort,
                         page,
@@ -30,6 +30,7 @@ const Jobs = () => {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
                 });
+                console.log(response);
 
                 setAllJobs(response.data.jobs);
                 setJobs(response.data.jobs);
@@ -50,7 +51,10 @@ const Jobs = () => {
             return (<div className="bg-yellow-600 text-black px-3 py-1 text-sm rounded-full">Pending</div>);
         }
         if (s === "Interview") {
-            return (<div className="bg-green-600 text-white px-3 py-1 text-sm rounded-full">Interview</div>);
+            return (<div className="bg-green-400 text-white px-3 py-1 text-sm rounded-full">Interview</div>);
+        }
+        if (s === "Selected") {
+            return (<div className="bg-green-600 text-white px-3 py-1 text-sm rounded-full">Selected</div>);
         }
         if (s === "Reject") {
             return (<div className="bg-red-600 text-white px-3 py-1 text-sm rounded-full">Rejected</div>);
@@ -61,22 +65,13 @@ const Jobs = () => {
         setsort(s);
     }
 
-    const handleApply = async (JobID) => {
-
-        const data = await axios.post('http://localhost:8000/api/v1/job/apply', { job: JobID }, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('token')}`
-            }
-        });
-    }
-
     const handlePageChange = (newPage) => {
         setPage(newPage);
     };
 
     return (
         <div className="min-h-screen bg-white flex flex-col items-center px-4 py-8">
-            <h1 className="text-3xl font-bold mb-6 text-blue-800">Job Search</h1>
+            <h1 className="text-3xl font-bold mb-6 text-blue-800">My Jobs</h1>
 
             <div className="w-full max-w-2xl mb-6 flex items-center gap-4">
                 <input
@@ -112,16 +107,15 @@ const Jobs = () => {
             <div className="w-full max-w-2xl max-h-[450px] overflow-y-auto">
                 {jobs.length > 0 ? (
                     jobs.map((job) => (
-
                         <div key={job._id} className="bg-blue-100 border border-blue-300 text-blue-900 rounded-xl shadow-md p-4 mb-4 hover:bg-blue-200 transition-colors">
                             <div className='flex justify-between'>
-                                <h3 className="text-xl font-semibold mb-1">{job.position}</h3>
+                                <h3 className="text-xl font-semibold mb-1">{job.JobId.position}</h3>
                                 <div>
-                                    <button className='btn btn-success' onClick={() => handleApply(job._id)}>Apply</button>
+                                    {status(job.status)}
                                 </div>
                             </div>
-                            <p className="text-sm">Company: {job.company}</p>
-                            <p className="text-sm">Work Type: {job.workType}</p>
+                            <p className="text-sm">Company: {job.JobId.company}</p>
+                            <p className="text-sm">Work Type: {job.JobId.workType}</p>
                         </div>
                     ))
                 ) :
@@ -151,4 +145,4 @@ const Jobs = () => {
     );
 };
 
-export default Jobs;
+export default My_Jobs;

@@ -15,6 +15,7 @@ const Register = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [location, setLoaction] = useState("");
+    const [userT, setUserT] = useState("");
     const { loading } = useSelector(state => state.alerts)
 
     const dispatch = useDispatch()
@@ -26,7 +27,7 @@ const Register = () => {
                 return toast.error('Please provide required feilds')
             }
             dispatch(showLoading())
-            const { data } = await axios.post('https://estines-job-portal.onrender.com/api/v1/auth/register', { name, lastName, email, password, location })
+            const { data } = await axios.post('http://localhost:8000/api/v1/auth/register', { name, lastName, email, password, location, userT })
             dispatch(hideLoading())
             if (data.success) {
                 toast.success('Registered Successfully')
@@ -37,8 +38,8 @@ const Register = () => {
             if (error.response && error.response.data && error.response.data.message) {
                 toast.error(error.response.data.message);
             }
-            else{
-            toast.error('Invalid Form Details Please Try Again');
+            else {
+                toast.error('Invalid Form Details Please Try Again');
             }
         }
     }
@@ -90,7 +91,15 @@ const Register = () => {
                                 handleChange={(e) => setLoaction(e.target.value)}
                                 name="location"
                             />
-                            <div className="s-flex justify-space-between">
+                            <InputFrom
+                                htmlFor="UserType"
+                                labelText={"UserType"}
+                                type={"text"}
+                                value={userT}
+                                handleChange={(e) => setUserT(e.target.value)}
+                                name="UserType"
+                            />
+                            <div className="d-flex flex-col justify-space-between items-center">
                                 <p>Already Registered? <Link to="/login" >Login</Link></p>
                                 <button type="submit" className="btn btn-primary">Register</button>
                             </div>

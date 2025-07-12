@@ -16,7 +16,7 @@ export const userMenu = [
     },
     {
         name: 'Latest jobs',
-        path: '/search',
+        path: '/all-jobs',
         icon: "fa-solid fa-briefcase"
     },
     {
