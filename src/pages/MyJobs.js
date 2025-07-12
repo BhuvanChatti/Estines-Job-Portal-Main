@@ -17,7 +17,7 @@ const My_Jobs = () => {
         const fetchJobs = async () => {
             setLoading(true);
             try {
-                const response = await axios.get('https://estines-job-portal.onrender.com/api/v1/job/get-my-jobs', {
+                const response = await axios.get('http://localhost:8000/api/v1/job/get-my-jobs', {
                     params: {
                         sort: sort,
                         page,

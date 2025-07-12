@@ -18,7 +18,7 @@ const Applied = () => {
         const fetchJobs = async () => {
             setLoading(true);
             try {
-                const response = await axios.get('https://estines-job-portal.onrender.com/api/v1/job/get-Wmy-jobs', {
+                const response = await axios.get('http://localhost:8000/api/v1/job/get-Wmy-jobs', {
                     params: {
                         sort: sort,
                         page,
@@ -58,7 +58,7 @@ const Applied = () => {
             setOpen(false);
             try {
                 console.log(jobId);
-                await axios.put(`https://estines-job-portal.onrender.com/api/v1/job/changeapply/${jobId}`, {
+                await axios.put(`http://localhost:8000/api/v1/job/changeapply/${jobId}`, {
                     status: s,
                 }, {
                     headers: {
@@ -130,9 +130,9 @@ const Applied = () => {
                 </p>
             )}
 
-            {loading && <p className="text-gray-600 mb-4">Loading...</p>}
+            {loading ? (<p className="text-gray-600 mb-4">Loading...</p>):
 
-            <div className="w-full max-w-2xl max-h-[450px] overflow-y-auto">
+            (<div className="w-full max-w-2xl max-h-[450px] overflow-y-auto">
                 {jobs.length > 0 ? (
                     jobs.map((job) => (
 
@@ -150,7 +150,7 @@ const Applied = () => {
                     ))
                 ) :
                     (<p className="bg-blue-50 text-blue-700 px-4 py-2 rounded w-full max-w-2xl text-center">No jobs found</p>)}
-            </div>
+            </div>)}
 
             <div className="mt-6 flex items-center gap-4">
                 <button

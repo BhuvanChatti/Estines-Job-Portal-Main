@@ -27,7 +27,7 @@ const Register = () => {
                 return toast.error('Please provide required feilds')
             }
             dispatch(showLoading())
-            const { data } = await axios.post('https://estines-job-portal.onrender.com/api/v1/auth/register', { name, lastName, email, password, location, userT })
+            const { data } = await axios.post('http://localhost:8000/api/v1/auth/register', { name, lastName, email, password, location, userT })
             dispatch(hideLoading())
             if (data.success) {
                 toast.success('Registered Successfully')
