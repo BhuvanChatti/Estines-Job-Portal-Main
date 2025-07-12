@@ -17,7 +17,7 @@ const Jobs = () => {
         const fetchJobs = async () => {
             setLoading(true);
             try {
-                const response = await axios.get('https://estines-job-portal.onrender.com/api/v1/job/get-jobs', {
+                const response = await axios.get('http://localhost:8000/api/v1/job/get-jobs', {
                     params: {
                         sort: sort,
                         page,
@@ -63,7 +63,7 @@ const Jobs = () => {
 
     const handleApply = async (JobID) => {
 
-        const data = await axios.post('https://estines-job-portal.onrender.com/api/v1/job/apply', { job: JobID }, {
+        const data = await axios.post('http://localhost:8000/api/v1/job/apply', { job: JobID }, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
@@ -107,33 +107,33 @@ const Jobs = () => {
                 </p>
             )}
 
-            {loading && <p className="text-gray-600 mb-4">Loading...</p>}
+            {loading ? (<p className="text-gray-600 mb-4">Loading...</p>) :
+                (<div className="w-full max-w-2xl max-h-[450px] overflow-y-auto">
+                    {jobs.length > 0 ? (
+                        jobs.map((job) => (
 
-            <div className="w-full max-w-2xl max-h-[450px] overflow-y-auto">
-                {jobs.length > 0 ? (
-                    jobs.map((job) => (
-
-                        <div key={job._id} className="bg-blue-100 border border-blue-300 text-blue-900 rounded-xl shadow-md p-4 mb-4 hover:bg-blue-200 transition-colors">
-                            <div className='flex justify-between'>
-                                <h3 className="text-xl font-semibold mb-1">{job.position}</h3>
-                                <div>
-                                    <button className='btn btn-success' onClick={() => handleApply(job._id)}>Apply</button>
+                            <div key={job._id} className="bg-blue-100 border border-blue-300 text-blue-900 rounded-xl shadow-md p-4 mb-4 hover:bg-blue-200 transition-colors">
+                                <div className='flex justify-between'>
+                                    <h3 className="text-xl font-semibold mb-1">{job.position}</h3>
+                                    <div>
+                                        <button className='btn btn-success' onClick={() => handleApply(job._id)}>Apply</button>
+                                    </div>
                                 </div>
+                                <p className="text-sm">Company: {job.company}</p>
+                                <p className="text-sm">Work Type: {job.workType}</p>
                             </div>
-                            <p className="text-sm">Company: {job.company}</p>
-                            <p className="text-sm">Work Type: {job.workType}</p>
-                        </div>
-                    ))
-                ) :
-                    (<p className="bg-blue-50 text-blue-700 px-4 py-2 rounded w-full max-w-2xl text-center">No jobs found</p>)}
-            </div>
+                        ))
+                    ) :
+                        (<p className="bg-blue-50 text-blue-700 px-4 py-2 rounded w-full max-w-2xl text-center">No jobs found</p>)}
+                </div>
+                )
+            }
 
             <div className="mt-6 flex items-center gap-4">
                 <button
                     onClick={() => handlePageChange(page - 1)}
                     disabled={page === 1}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-full shadow disabled:bg-gray-400"
-                >
+                    className="px-4 py-2 bg-blue-600 text-white rounded-full shadow disabled:bg-gray-400">
                     Previous
                 </button>
                 <span className="text-gray-700 font-medium">
