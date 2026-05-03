@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { FaCaretDown, FaCaretUp } from 'react-icons/fa'
 
 const Applied = () => {
     const Options = ['Pending', 'Reject', 'Interview', 'Selected'];
@@ -58,7 +59,7 @@ const Applied = () => {
             setOpen(false);
             try {
                 console.log(jobId);
-                await axios.put(`https://estines-job-portal.onrender.com/api/v1/job/changeapply/${jobId}`, {
+                await axios.put(`http://localhost:8000/api/v1/job/changeapply/${jobId}`, {
                     status: s,
                 }, {
                     headers: {
@@ -74,10 +75,10 @@ const Applied = () => {
             <div className="relative inline-block text-left">
                 <button onClick={() => setOpen(prev => !prev)}
                     className={`${selectedStatus === "Pending" ? "bg-yellow-600" : selectedStatus === "Interview" ? "bg-green-400" : selectedStatus === "Selected" ? "bg-green-600" : selectedStatus === "Reject" ? "bg-red-600" : "bg-gray-600"} text-black px-3 py-1 text-sm rounded-full flex items-center`}>
-                    {selectedStatus} 🔽
+                    {selectedStatus} {open ? <FaCaretUp /> : <FaCaretDown />}
                 </button>
                 {open && (
-                    <div className="absolute z-10 right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                    <div className={`absolute z-10 right-0 mt-2 w-32 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transform transition-all duration-5000 ease-out ${open ? "opacity-100 scale-100" : "opacity-0 scale-95 pointer-events-none"}`}>
                         {Options.map((status) => (
                             <button key={status} onClick={() => handlestatus(status)} className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 text-left">
                                 {status}
