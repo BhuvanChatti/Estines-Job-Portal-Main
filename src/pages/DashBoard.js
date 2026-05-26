@@ -1,19 +1,20 @@
 import React, { useContext } from 'react';
 import Layout from '../components/Layout/Layout';
-import My_Jobs from './MyJobs';
-import { userContext } from '../components/shared/Context.js';
+import MyJobs from './MyJobs';
 import Applied from './Applied';
+import DashboardStats from '../components/shared/DashboardStats';
+import { userContext } from '../components/shared/Context.js';
 
 const DashBoard = () => {
     const { userT } = useContext(userContext);
     return (
         <Layout>
-            {/* <My_Jobs /> */}
-            
-            {(userT=="Applicant")?
-                <My_Jobs />:<Applied />
-            }
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: '#f9fafb' }}>
+                <DashboardStats userT={userT} />
+                {userT === 'Applicant' ? <MyJobs /> : <Applied />}
+            </div>
         </Layout>
-    )
+    );
 };
+
 export default DashBoard;

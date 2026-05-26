@@ -7,21 +7,28 @@ export const userMenu = [
     {
         name: 'Dashboard',
         path: '/dashboard',
-        icon: "fa-solid fa-house-user"
+        icon: "fa-solid fa-gauge"
     },
     {
-        name: 'My jobs',
-        path: '/my-jobs',
-        icon: "fa-solid fa-briefcase"
-    },
-    {
-        name: 'Latest jobs',
+        name: 'Latest Jobs',
         path: '/all-jobs',
         icon: "fa-solid fa-briefcase"
     },
     {
+        name: 'Post a Job',
+        path: '/post-job',
+        icon: "fa-solid fa-plus",
+        role: 'Recruiter'
+    },
+    {
+        name: 'My Resume',
+        path: '/resume',
+        icon: "fa-solid fa-file-lines",
+        role: 'Applicant'
+    },
+    {
         name: 'Update Profile',
-        path: '/user Profile',
+        path: '/user-profile',
         icon: "fa-regular fa-user"
     },
-]
+];

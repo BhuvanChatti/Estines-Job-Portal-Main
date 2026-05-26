@@ -32,7 +32,8 @@ const PrivateRoute = ({ children }) => {
         if (!user) {
             getUser();
         }
-    });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     if (localStorage.getItem('token')) {
         return children;
     } else {

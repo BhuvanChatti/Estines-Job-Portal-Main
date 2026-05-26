@@ -9,9 +9,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import PrivateRoute from './components/routes/PrivateRoute.js';
 import PublicRoute from './components/routes/PublicRoute.js';
 import JobS from './pages/Jobs.js';
+import UpdateProfile from './pages/UpdateProfile.js';
+import PostJob from './pages/PostJob.js';
+import ResumeEdit from './pages/ResumeEdit.js';
 import { ContextA } from './components/shared/Context.js';
-import My_Jobs from './pages/MyJobs.js';
-import Applied from './pages/Applied.js';
 
 function App() {
   return (
@@ -22,17 +23,12 @@ function App() {
           <Route path='/' element={<HomePage />} />
           <Route path='/login' element={<PublicRoute><Login /></PublicRoute>} />
           <Route path='/register' element={<PublicRoute><Register /></PublicRoute>} />
-          <Route path='/my-jobs' element={<PrivateRoute>
-            <My_Jobs />
-            {/* <Applied /> */}
-            {/* {(userT=="Applicant")?
-                <My_Jobs />:<Applied />
-            } */}
-          </PrivateRoute>} />
           <Route path='/all-jobs' element={<PrivateRoute><JobS /></PrivateRoute>} />
           <Route path='/dashboard' element={<PrivateRoute><DashBoard /></PrivateRoute>} />
-
-          <Route path='*' element={<PrivateRoute><NotFound /></PrivateRoute>} />
+          <Route path='/user-profile' element={<PrivateRoute><UpdateProfile /></PrivateRoute>} />
+          <Route path='/post-job' element={<PrivateRoute><PostJob /></PrivateRoute>} />
+          <Route path='/resume' element={<PrivateRoute><ResumeEdit /></PrivateRoute>} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
       </ContextA>
     </>
