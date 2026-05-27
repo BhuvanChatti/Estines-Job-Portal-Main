@@ -1,11 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
+const API = process.env.REACT_APP_API_URL || 'https://estines-job-portal.onrender.com/api/v1';
+
 const statusStyle = {
     Pending:   'bg-amber-50 text-amber-700 border-amber-200',
     Interview: 'bg-blue-50 text-blue-700 border-blue-200',
     Selected:  'bg-green-50 text-green-700 border-green-200',
     Reject:    'bg-red-50 text-red-700 border-red-200',
+};
+
+const statusLabel = {
+    Pending:   'Pending',
+    Interview: 'Interview',
+    Selected:  'Selected',
+    Reject:    'Rejected',
 };
 
 const My_Jobs = () => {
@@ -24,7 +33,7 @@ const My_Jobs = () => {
             setLoading(true);
             setError(null);
             try {
-                const response = await axios.get('https://estines-job-portal.onrender.com/api/v1/job/get-my-jobs', {
+                const response = await axios.get(`${API}/job/get-my-jobs`, {
                     params: { sort, page, limit: 10, status: 'all', workType: 'all', search },
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                 });
@@ -108,7 +117,7 @@ const My_Jobs = () => {
                                     <p className="text-xs text-gray-500 mt-0.5">{job.JobId.company} · {job.JobId.workType}</p>
                                 </div>
                                 <span className={`shrink-0 ml-4 px-3 py-1 text-xs font-medium border rounded-full ${statusStyle[job.status] || 'bg-gray-50 text-gray-600 border-gray-200'}`}>
-                                    {job.status}
+                                    {statusLabel[job.status] || job.status}
                                 </span>
                             </div>
                         ))}

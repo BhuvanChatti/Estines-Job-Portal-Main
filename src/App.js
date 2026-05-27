@@ -12,6 +12,8 @@ import JobS from './pages/Jobs.js';
 import UpdateProfile from './pages/UpdateProfile.js';
 import PostJob from './pages/PostJob.js';
 import ResumeEdit from './pages/ResumeEdit.js';
+import ForgotPassword from './pages/ForgotPassword.js';
+import ChangePassword from './pages/ChangePassword.js';
 import { ContextA } from './components/shared/Context.js';
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
           <Route path='/user-profile' element={<PrivateRoute><UpdateProfile /></PrivateRoute>} />
           <Route path='/post-job' element={<PrivateRoute><PostJob /></PrivateRoute>} />
           <Route path='/resume' element={<PrivateRoute><ResumeEdit /></PrivateRoute>} />
+          <Route path='/change-password' element={<PrivateRoute><ChangePassword /></PrivateRoute>} />
+          <Route path='/forgot-password' element={<PublicRoute><ForgotPassword /></PublicRoute>} />
           <Route path='*' element={<NotFound />} />
         </Routes>
       </ContextA>

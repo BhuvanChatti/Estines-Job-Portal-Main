@@ -56,6 +56,7 @@ const DashboardStats = ({ userT }) => {
                         { label: 'Pending', value: counts.Pending || 0, color: '#d97706' },
                         { label: 'Interview', value: counts.Interview || 0, color: '#2563eb' },
                         { label: 'Selected', value: counts.Selected || 0, color: '#16a34a' },
+                        { label: 'Rejected', value: counts.Reject || 0, color: '#dc2626' },
                     ]);
                 } else {
                     // Applicant — use get-my-jobs (same as MyJobs.js)
@@ -73,6 +74,7 @@ const DashboardStats = ({ userT }) => {
                         { label: 'Pending', value: counts.Pending || 0, color: '#d97706' },
                         { label: 'Interview', value: counts.Interview || 0, color: '#2563eb' },
                         { label: 'Selected', value: counts.Selected || 0, color: '#16a34a' },
+                        { label: 'Rejected', value: counts.Reject || 0, color: '#dc2626' },
                     ]);
                 }
             } catch (_) {
@@ -99,7 +101,7 @@ const DashboardStats = ({ userT }) => {
             </div>
 
             <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
-                {(cards || Array(4).fill(null)).map((card, i) => (
+                {(cards || Array(5).fill(null)).map((card, i) => (
                     <StatCard
                         key={i}
                         label={card?.label || ''}

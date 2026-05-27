@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const STATUS_OPTIONS = ['Pending', 'Interview', 'Selected', 'Reject'];
+const API = process.env.REACT_APP_API_URL || 'https://estines-job-portal.onrender.com/api/v1';
 
 const statusStyle = {
     Pending:   'bg-amber-50 text-amber-700 border-amber-200',
@@ -11,10 +11,27 @@ const statusStyle = {
     Reject:    'bg-red-50 text-red-700 border-red-200',
 };
 
+const statusLabel = {
+    Pending:   'Pending',
+    Interview: 'Interview',
+    Selected:  'Selected',
+    Reject:    'Rejected',
+};
+
+const NEXT_OPTIONS = {
+    Pending:   ['Interview', 'Reject'],
+    Interview: ['Selected', 'Reject'],
+    Selected:  [],
+    Reject:    [],
+};
+
 const StatusDropdown = ({ currentStatus, jobId, onUpdated }) => {
     const [open, setOpen] = useState(false);
     const [selected, setSelected] = useState(currentStatus);
     const ref = useRef(null);
+
+    const options = NEXT_OPTIONS[selected] || [];
+    const isFinal = options.length === 0;
 
     useEffect(() => {
         const handleClickOutside = (e) => {
@@ -27,7 +44,7 @@ const StatusDropdown = ({ currentStatus, jobId, onUpdated }) => {
     const handleSelect = async (s) => {
         setOpen(false);
         try {
-            await axios.put(`https://estines-job-portal.onrender.com/api/v1/job/changeapply/${jobId}`, { status: s }, {
+            await axios.put(`${API}/job/changeapply/${jobId}`, { status: s }, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             setSelected(s);
@@ -38,22 +55,30 @@ const StatusDropdown = ({ currentStatus, jobId, onUpdated }) => {
         }
     };
 
+    if (isFinal) {
+        return (
+            <span className={`px-3 py-1 text-xs font-medium border rounded-full ${statusStyle[selected] || 'bg-gray-50 text-gray-600 border-gray-200'}`}>
+                {statusLabel[selected] || selected}
+            </span>
+        );
+    }
+
     return (
         <div className="relative" ref={ref}>
             <button
                 onClick={() => setOpen(prev => !prev)}
                 className={`px-3 py-1 text-xs font-medium border rounded-full flex items-center gap-1.5 ${statusStyle[selected] || 'bg-gray-50 text-gray-600 border-gray-200'}`}
             >
-                {selected}
+                {statusLabel[selected] || selected}
                 <span className="opacity-60">{open ? '▲' : '▼'}</span>
             </button>
             {open && (
                 <div className="absolute right-0 mt-1 w-32 bg-white border border-gray-200 rounded-md shadow-md z-50">
-                    {STATUS_OPTIONS.map((s) => (
+                    {options.map((s) => (
                         <button
                             key={s}
                             onClick={() => handleSelect(s)}
-                            className={`block w-full text-left px-3 py-2 text-xs hover:bg-gray-50 ${s === selected ? 'font-semibold text-gray-900' : 'text-gray-600'}`}
+                            className="block w-full text-left px-3 py-2 text-xs hover:bg-gray-50 text-gray-600"
                         >
                             {s}
                         </button>
@@ -80,7 +105,7 @@ const Applied = () => {
             setLoading(true);
             setError(null);
             try {
-                const response = await axios.get('https://estines-job-portal.onrender.com/api/v1/job/get-Wmy-jobs', {
+                const response = await axios.get(`${API}/job/get-Wmy-jobs`, {
                     params: { sort, page, limit: 10, status: 'all', workType: 'all', search },
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                 });

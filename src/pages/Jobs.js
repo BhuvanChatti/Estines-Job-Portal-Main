@@ -3,6 +3,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import Layout from '../components/Layout/Layout';
 
+const API = process.env.REACT_APP_API_URL || 'https://estines-job-portal.onrender.com/api/v1';
+
 const Jobs = () => {
     const [search, setSearch] = useState('');
     const [sort, setSort] = useState('latest');
@@ -19,7 +21,7 @@ const Jobs = () => {
             setLoading(true);
             setError(null);
             try {
-                const response = await axios.get('https://estines-job-portal.onrender.com/api/v1/job/get-jobs', {
+                const response = await axios.get(`${API}/job/get-jobs`, {
                     params: { sort, page, limit: 10, status: 'all', workType: 'all', search },
                     headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
                 });
@@ -46,7 +48,7 @@ const Jobs = () => {
 
     const handleApply = async (JobID) => {
         try {
-            await axios.post('https://estines-job-portal.onrender.com/api/v1/job/apply', { job: JobID }, {
+            await axios.post(`${API}/job/apply`, { job: JobID }, {
                 headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
             });
             toast.success('Applied successfully!');

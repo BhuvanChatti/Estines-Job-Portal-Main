@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './R-L.css';
 
+const API = process.env.REACT_APP_API_URL || 'https://estines-job-portal.onrender.com/api/v1';
+
 const PasswordField = ({ label, value, onChange }) => {
     const [show, setShow] = useState(false);
     return (
@@ -62,7 +64,7 @@ const Register = () => {
         }
         try {
             dispatch(showLoading());
-            const { data } = await axios.post('https://estines-job-portal.onrender.com/api/v1/auth/register', {
+            const { data } = await axios.post(`${API}/auth/register`, {
                 name, lastName, email, password, location, type: userT
             });
             dispatch(hideLoading());

@@ -5,6 +5,8 @@ import { setUser } from '../redux/features/auth/authSlice';
 import { toast } from 'react-toastify';
 import Layout from '../components/Layout/Layout';
 
+const API = process.env.REACT_APP_API_URL || 'https://estines-job-portal.onrender.com/api/v1';
+
 const UpdateProfile = () => {
     const { user } = useSelector(state => state.auth);
     const dispatch = useDispatch();
@@ -32,7 +34,7 @@ const UpdateProfile = () => {
         try {
             setSaving(true);
             const { data } = await axios.put(
-                'https://estines-job-portal.onrender.com/api/v1/user/update-user',
+                `${API}/user/update-user`,
                 { name, lastName, email, location },
                 { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
             );

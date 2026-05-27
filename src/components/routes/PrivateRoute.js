@@ -6,6 +6,9 @@ import { setUser } from '../../redux/features/auth/authSlice';
 import { Navigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { userContext } from '../shared/Context.js';
+
+const API = process.env.REACT_APP_API_URL || 'https://estines-job-portal.onrender.com/api/v1';
+
 const PrivateRoute = ({ children }) => {
     const { user } = useSelector(state => state.auth)
     const { setT } = useContext(userContext)
@@ -13,7 +16,7 @@ const PrivateRoute = ({ children }) => {
     const getUser = async (req, res, next) => {
         try {
             dispatch(showLoading())
-            const { data } = await axios.post('https://estines-job-portal.onrender.com/api/v1/user/getUser', { token: localStorage.getItem('token') }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
+            const { data } = await axios.post(`${API}/user/getUser`, { token: localStorage.getItem('token') }, { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } })
             dispatch(hideLoading())
             if (data.success) {
                 console.log(data.data.type);

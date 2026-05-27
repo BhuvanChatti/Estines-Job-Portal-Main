@@ -31,4 +31,9 @@ export const userMenu = [
         path: '/user-profile',
         icon: "fa-regular fa-user"
     },
+    {
+        name: 'Change Password',
+        path: '/change-password',
+        icon: "fa-solid fa-lock"
+    },
 ];

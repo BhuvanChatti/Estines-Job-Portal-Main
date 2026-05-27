@@ -8,6 +8,8 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './R-L.css';
 
+const API = process.env.REACT_APP_API_URL || 'https://estines-job-portal.onrender.com/api/v1';
+
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -21,7 +23,7 @@ const Login = () => {
         e.preventDefault();
         try {
             dispatch(showLoading());
-            const { data } = await axios.post('https://estines-job-portal.onrender.com/api/v1/auth/login', { email, password });
+            const { data } = await axios.post(`${API}/auth/login`, { email, password });
             dispatch(hideLoading());
             if (data.success) {
                 localStorage.setItem('token', data.token);
@@ -82,6 +84,9 @@ const Login = () => {
                             <p className="mb-0" style={{ fontSize: '0.875rem' }}>
                                 Not registered?{' '}
                                 <Link to="/register" style={{ color: '#2563eb', fontWeight: 500 }}>Register Here</Link>
+                            </p>
+                            <p className="mb-0" style={{ fontSize: '0.875rem' }}>
+                                <Link to="/forgot-password" style={{ color: '#6b7280', fontWeight: 400 }}>Forgot password?</Link>
                             </p>
                             <button type="submit" className="btn btn-primary w-100">Login</button>
                         </div>
