@@ -24,7 +24,7 @@ const Layout = ({ children, defaultCollapsed = false }) => {
         <div style={{ display: 'flex', minHeight: '100vh' }}>
             <div className={`sidebar ${collapsed ? 'sidebar-collapsed' : ''}`}>
                 <div className="sidebar-header">
-                    {!collapsed && <div className='logo'>Estines Jobs</div>}
+                    {!collapsed && <div className='logo'>Nexus Jobs</div>}
                     <button
                         className="sidebar-toggle"
                         onClick={() => setCollapsed(c => !c)}

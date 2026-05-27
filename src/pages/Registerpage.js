@@ -83,7 +83,7 @@ const Register = () => {
             {loading ? <Spinner /> : (
                 <div className='form-container'>
                     <form className="card p-2" onSubmit={handleSubmit}>
-                        <img src="/assets/images/logo-black.png" alt="Estines" />
+                        <img src="/nexus-logo.svg" alt="Nexus" style={{ height: '56px', width: 'auto', marginBottom: '8px' }} />
 
                         <div className="mb-3">
                             <label className="form-label">First Name</label>

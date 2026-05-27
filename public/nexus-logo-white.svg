@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 56">
+  <rect width="56" height="56" rx="13" fill="white"/>
+  <text x="28" y="43"
+        text-anchor="middle"
+        font-family="Georgia,'Times New Roman',serif"
+        font-weight="bold"
+        font-size="42"
+        fill="#111827">N</text>
+
+  <text x="72" y="33"
+        font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"
+        font-weight="800"
+        font-size="26"
+        fill="white"
+        letter-spacing="-0.8">Nexus</text>
+
+  <text x="73" y="47"
+        font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"
+        font-weight="500"
+        font-size="9"
+        fill="rgba(255,255,255,0.55)"
+        letter-spacing="1.5">FIND YOUR DREAM JOB</text>
+</svg>

@@ -9,7 +9,7 @@ const ForgotPassword = () => {
     return (
         <div className="form-container">
             <div className="card p-2">
-                <img src="/assets/images/logo-black.png" alt="Estines" />
+                <img src="/nexus-logo.svg" alt="Nexus" style={{ height: '56px', width: 'auto', marginBottom: '8px' }} />
                 <h2 className="text-base font-semibold text-gray-900 mb-1">Forgot Password</h2>
                 <p className="text-xs text-gray-500 mb-4">We'll send an OTP to your registered email.</p>
 

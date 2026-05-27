@@ -10,7 +10,7 @@ const HomePage = () => {
             <div className="backgroundStyle">
                 <div className="overlay"></div>
                 <div className="content">
-                    <img src="/assets/images/logo-no-background.png" alt="Estines" style={{ height: '60px', width: 'auto' }} />
+                    <img src="/nexus-logo-white.svg" alt="Nexus" style={{ height: '60px', width: 'auto' }} />
                     <h1>Find Your Next Opportunity</h1>
                     <p>Browse open positions and apply with ease.</p>
                     <Link to="/all-jobs">
