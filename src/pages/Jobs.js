@@ -62,7 +62,7 @@ const Jobs = () => {
         <div className="min-h-screen bg-gray-50 px-4 py-10">
             <div className="max-w-3xl mx-auto">
                 <h1 className="text-2xl font-semibold text-gray-900 mb-1">Browse Jobs</h1>
-                <p className="text-sm text-gray-500 mb-6">Find your next opportunity</p>
+                <p className="text-sm text-gray-500 mb-6">Browse open positions</p>
 
                 <div className="flex gap-3 mb-6">
                     <input
@@ -111,17 +111,28 @@ const Jobs = () => {
                 ) : jobs.length > 0 ? (
                     <div className="space-y-3">
                         {jobs.map((job) => (
-                            <div key={job._id} className="bg-white border border-gray-200 rounded-md p-4 flex items-center justify-between hover:border-gray-400 transition-colors">
-                                <div>
-                                    <h3 className="text-sm font-semibold text-gray-900">{job.position}</h3>
-                                    <p className="text-xs text-gray-500 mt-0.5">{job.company} · {job.workType} · {job.workLocation}</p>
+                            <div key={job._id} className="bg-white border border-gray-200 rounded-md p-4 hover:border-gray-400 transition-colors">
+                                <div className="flex items-start justify-between gap-4">
+                                    <div className="min-w-0">
+                                        <h3 className="text-sm font-semibold text-gray-900">{job.position}</h3>
+                                        <p className="text-xs text-gray-500 mt-0.5">{job.company} · {job.workType} · {job.workLocation}</p>
+                                    </div>
+                                    <button
+                                        onClick={() => handleApply(job._id)}
+                                        className="shrink-0 px-4 py-1.5 text-xs font-medium border border-gray-900 text-gray-900 rounded-md hover:bg-gray-900 hover:text-white transition-colors"
+                                    >
+                                        Apply
+                                    </button>
                                 </div>
-                                <button
-                                    onClick={() => handleApply(job._id)}
-                                    className="ml-4 shrink-0 px-4 py-1.5 text-xs font-medium border border-gray-900 text-gray-900 rounded-md hover:bg-gray-900 hover:text-white transition-colors"
-                                >
-                                    Apply
-                                </button>
+                                {job.requirements?.length > 0 && (
+                                    <div className="flex flex-wrap gap-1.5 mt-3">
+                                        {job.requirements.map((r, i) => (
+                                            <span key={i} className="px-2 py-0.5 text-xs bg-gray-100 text-gray-600 rounded-full">
+                                                {r}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </div>

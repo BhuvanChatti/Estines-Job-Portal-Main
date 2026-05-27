@@ -93,8 +93,8 @@ const DashboardStats = ({ userT }) => {
                 </h1>
                 <p style={{ fontSize: '0.8rem', color: '#6b7280', marginTop: '4px' }}>
                     {userT === 'Recruiter'
-                        ? 'Overview of applications to your job postings.'
-                        : 'Summary of your job applications.'}
+                        ? 'Here\'s what\'s happening with your listings.'
+                        : 'Track where your applications stand.'}
                 </p>
             </div>
 

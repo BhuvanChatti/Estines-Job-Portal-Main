@@ -51,7 +51,7 @@ const UpdateProfile = () => {
             <div className="min-h-screen bg-gray-50 px-4 py-10">
                 <div className="max-w-lg mx-auto">
                     <h1 className="text-2xl font-semibold text-gray-900 mb-1">Update Profile</h1>
-                    <p className="text-sm text-gray-500 mb-6">Keep your information up to date</p>
+                    <p className="text-sm text-gray-500 mb-6">Edit your account details</p>
 
                     <form
                         onSubmit={handleSubmit}
